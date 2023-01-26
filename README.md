@@ -11,6 +11,8 @@ I have also included an example of the functions I used in both PHP and JS.
 
 To make the development process easier, whenever a piece of text needs an associated translated version, wrap the text in a function call.
 
+This avoids having to think about translations and translation files until you are done with writing code using the base language first e.g. English
+
 Add both the PHP and JS function calls to your scripts wherever they're needed.
 
 a. PHP examples
