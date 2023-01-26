@@ -52,7 +52,9 @@ After extracting the translations for the first time, the $append value should b
 
 Now open the script in your browser, once done it shows a summary of what it has produced: -
 
-Done. 59 translations extracted 
+59 translations pre-loaded
+
+Done. 5 translations extracted 
 
 Translation Function: TranslateText 
 
