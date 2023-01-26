@@ -27,12 +27,11 @@ and if you have images with text in different languages, use this simple trick .
 
 ````
 ```
-<img src="images/<?=TranslateText('d5i1')?>" class="img img-responsive" style="width:80%;">
+<img src="images/<?=TranslateText('banner_EN.png')?>" class="img img-responsive" style="width:80%;">
 ```
 ````
 
-In English, the value for 'd5i1' would be something like 'banner_EN.png' and 
-in say Spanish would be something like 'banner_ES.png'
+In English, the value for 'banner_EN.png' would be in say Spanish would be something like 'banner_ES.png'
 
 b. JS example
 
