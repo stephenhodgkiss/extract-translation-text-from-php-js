@@ -54,7 +54,9 @@ Translation Function: TranslateText
 
 PHP array file: lang/en.php 
 
-Text only file: lang/en_messages.php 
+Text only file: lang/en_messages.txt 
+
+You can use the Text only file as the source to use in the manual translations at google or deepl.
 
 3. Notes regarding single and double quotes
 
