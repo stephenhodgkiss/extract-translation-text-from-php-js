@@ -1,10 +1,8 @@
-const langArray = <?=$jsonLang?>;
-
 function TranslateText(text) {
-    if(langArray[text] === undefined) {
+    if(langArray.text === undefined) {
         translatedText = text;
     } else {
-        translatedText = langArray[text];
+        translatedText = langArray.text;
     }
     return translatedText;
 }
