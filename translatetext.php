@@ -1,6 +1,6 @@
 <?php
 
-$langfile = 'lang/en.php';
+$langfile = 'lang/en.inc.php';
 include($langfile);
 
 $jsonLang = json_encode($_lang);
