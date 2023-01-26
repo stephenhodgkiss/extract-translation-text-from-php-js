@@ -34,7 +34,11 @@ in say Spanish would be something like 'banner_ES.png'
 
 b. JS example
 
+````
+```
 errorMsg = TranslateText('Select ONE item from the list above');
+```
+````
 
 2. Extracting
 
