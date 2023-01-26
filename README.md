@@ -31,7 +31,7 @@ and if you have images with text in different languages, use this simple trick .
 ```
 ````
 
-In English, the value for 'banner_EN.png' would be in say Spanish would be something like 'banner_ES.png'
+In English, the value for 'banner_EN.png' in say Spanish would be something like 'banner_ES.png'
 
 b. JS example
 
