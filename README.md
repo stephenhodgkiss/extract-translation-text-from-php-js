@@ -34,4 +34,20 @@ Once you have all your translatable texts wrapped in a function call, the next s
 
 First, upload and amend the script changing lines 5-7 as necessary for your project. It should be in the root of your public folder, so it can read all files in that directory and all sub-directories.
 
+Now open the script in your browser, once done it shows a summary of what it has done: -
 
+Done. 59 translations extracted
+Translation Function: TranslateText
+PHP array file: lang/en.php
+Text only file: lang/en_messages.php
+
+3. Notes regarding single and double quotes
+
+The extraction process caters for you using single or double quotes in the function calls.
+
+If your text contains single quote, then you need to escape them in both PHP and JS instances, regardless if you wrap the text in single or double quotes.
+
+Examples
+
+const msg1 = TranslateText('That\'s a beautiful view');
+const msg2 = TranslateText("Where\'s the appointment book?");
