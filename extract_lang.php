@@ -3,6 +3,7 @@
 // ini_set('display_errors', 'On');
 
 $translateString = 'TranslateText';
+$ignorePath1 = dirname(__FILE__).'/lang';
 $filePath1 = 'lang/en.inc.php';
 $filePath2 = 'en_messages.txt';
 $append = true;
@@ -35,7 +36,7 @@ for ($IDX = 0; $IDX < count($matches); $IDX++) {
     if (isset($matches[$IDX]) && $matches[$IDX] != '' && $matches[$IDX] != '"') {
         $outputLine = "\$_lang['".$matches[$IDX]."'] = '".$matches[$IDX]."';";
         fwrite($file1, $outputLine . PHP_EOL);
-        fwrite($file2, $matches[$IDX] . PHP_EOL);
+        fwrite($file2, stripcslashes($matches[$IDX]) . PHP_EOL);
     }
 }
 
@@ -51,17 +52,23 @@ echo 'Text only file: '.$filePath2.'<br>';
 exit;
 
 function processAllFiles($dir) {
+
+    global $ignorePath1;
+
     $files = scandir($dir);
     foreach($files as $file) {
         if(is_dir($dir.'/'.$file) && $file != '.' && $file != '..') {
             processAllFiles($dir.'/'.$file);
         } else {
             if(pathinfo($file, PATHINFO_EXTENSION) == 'js' || pathinfo($file, PATHINFO_EXTENSION) == 'php') {
-                // echo $dir.'/'.$file . "<br>";
-                extractCalls($dir,$file);
+                if ($dir != $ignorePath1) {
+                    // echo $dir.'/'.$file . "<br>";
+                    extractCalls($dir,$file);
+                }
             }
         }
     }
+
 }
 
 function extractCalls ($dir,$filename) {
@@ -69,11 +76,7 @@ function extractCalls ($dir,$filename) {
     global $matches,$translateString,$translateStringLength,$matchesIDX,$extractedCount;
 
     if (substr($filename,-3) == '.js') {
-        // echo 'filename='.$filename.'<br>';
-        // echo '__FILE__='.dirname(__FILE__).'<br>';
-        // echo '$dir='.$dir.'<br>';
         $scriptDirectory = str_replace(dirname(__FILE__),'',$dir);
-        // echo '$scriptDirectory='.$scriptDirectory.'<br>';
         $realFilename = 'https://'.$_SERVER['SERVER_NAME'].$scriptDirectory.'/'.$filename;
         $file_contents= file_get_contents($realFilename);
     } else {
@@ -83,8 +86,6 @@ function extractCalls ($dir,$filename) {
 
     $fileLength = strlen($file_contents);
     $IDX = 0;
-
-    // echo 'extractCalls='.$realFilename.' length='.$fileLength.'<br>';
 
     while ($IDX < $fileLength) {
 
@@ -105,7 +106,7 @@ function extractCalls ($dir,$filename) {
             $extractedCallText = substr($file_contents,$strpos1,$endPos-$strpos1);
             if (in_array($extractedCallText, $matches)) {
             } else {
-                echo "extractedCall1=".$strpos1." ".$endPos." ".$extractedCallText."<br><br>";
+                // echo "extractedCall1=".$strpos1." ".$endPos." ".$extractedCallText."<br><br>";
                 $matches[$matchesIDX] = $extractedCallText;
                 $extractedCount++;
                 $matchesIDX++;
@@ -119,7 +120,7 @@ function extractCalls ($dir,$filename) {
             $extractedCallText = substr($file_contents,$strpos2,$endPos-$strpos2);
             if (in_array($extractedCallText, $matches)) {
             } else {
-                echo "extractedCall2=".$strpos2." ".$endPos." ".$extractedCallText."<br><br>";
+                // echo "extractedCall2=".$strpos2." ".$endPos." ".$extractedCallText."<br><br>";
                 $matches[$matchesIDX] = $extractedCallText;
                 $extractedCount++;
                 $matchesIDX++;
