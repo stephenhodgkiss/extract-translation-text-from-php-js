@@ -15,7 +15,7 @@ Add both the PHP and JS function calls to your scripts wherever they're needed.
 
 a. PHP examples
 
-<button onclick="SelectPackage('2'); return false;" type="button" class="btn btn-primary" style="width:100%; margin-top:15px; color:#000; font-weight:bold; font-size:1.5rem;"><?=TranslateText('Order Now')?></button>
+<code><button onclick="SelectPackage('2'); return false;" type="button" class="btn btn-primary" style="width:100%; margin-top:15px; color:#000; font-weight:bold; font-size:1.5rem;"><?=TranslateText('Order Now')?></button></code>
 
 and if you have images with text in different languages, use this simple trick ...
 
