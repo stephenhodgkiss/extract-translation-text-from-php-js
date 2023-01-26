@@ -5,29 +5,38 @@
 $translateString = 'TranslateText';
 $filePath1 = 'lang/en.inc.php';
 $filePath2 = 'en_messages.txt';
-$append = false;
+$append = true;
 
-$_lang = [];
+$matches = [];
 $translateStringLength = strlen($translateString);
-
-// call function for each file
-processAllFiles(dirname(__FILE__));
 
 if ($append) {
     // TODO read existing file into array here
     include($filePath1);
+    $IDX = 0;
+    foreach($_lang as $entry) {
+        $matches[$IDX] = $entry;
+        $IDX++;
+    }
+    echo count($matches).' translations pre-loaded'.'<br>';
 }
+
+$matchesIDX = count($matches);
+$extractedCount = 0;
+
+// call function for each file
+processAllFiles(dirname(__FILE__));
 
 $file1 = fopen($filePath1, "w"); // formatted PHP array
 $file2 = fopen($filePath2, "w"); // just the text part
 
 fwrite($file1, '<?php' . PHP_EOL);
 
-for ($IDX = 0; $IDX < count($_lang); $IDX++) {
-    if ($_lang[$IDX] != '' && $_lang[$IDX] != '"') {
-        $outputLine = "\$_lang['".$_lang[$IDX]."'] = '".$_lang[$IDX]."';";
+for ($IDX = 0; $IDX < count($matches); $IDX++) {
+    if (isset($matches[$IDX]) && $matches[$IDX] != '' && $matches[$IDX] != '"') {
+        $outputLine = "\$_lang['".$matches[$IDX]."'] = '".$matches[$IDX]."';";
         fwrite($file1, $outputLine . PHP_EOL);
-        fwrite($file2, $_lang[$IDX] . PHP_EOL);
+        fwrite($file2, $matches[$IDX] . PHP_EOL);
     }
 }
 
@@ -36,7 +45,7 @@ fwrite($file1, '?>' . PHP_EOL);
 fclose($file1);
 fclose($file2);
 
-echo 'Done. '.count($_lang).' translations extracted'.'<br>';
+echo 'Done. '.$extractedCount.' translations extracted'.'<br>';
 echo 'Translation Function: '.$translateString.'<br>';
 echo 'PHP array file: '.$filePath1.'<br>';
 echo 'Text only file: '.$filePath2.'<br>';
@@ -58,7 +67,7 @@ function processAllFiles($dir) {
 
 function extractCalls ($dir,$filename) {
 
-    global $_lang,$translateString,$translateStringLength;
+    global $matches,$translateString,$translateStringLength,$matchesIDX,$extractedCount;
 
     if (substr($filename,-3) == '.js') {
         // echo 'filename='.$filename.'<br>';
@@ -74,7 +83,6 @@ function extractCalls ($dir,$filename) {
     }
 
     $fileLength = strlen($file_contents);
-    $_langIDX = count($_lang);
     $IDX = 0;
 
     // echo 'extractCalls='.$realFilename.' length='.$fileLength.'<br>';
@@ -96,10 +104,12 @@ function extractCalls ($dir,$filename) {
             $endPos = strpos($file_contents,"')",$strpos1+$translateStringLength);
             $strpos1 = $strpos1+$translateStringLength+2;
             $extractedCallText = substr($file_contents,$strpos1,$endPos-$strpos1);
-            // echo "extractedCall1=".$strpos1." ".$endPos." ".$extractedCallText."<br><br>";
-            if (!in_array($extractedCallText, $_lang)) {
-                $_lang[$_langIDX] = $extractedCallText;
-                $_langIDX++;
+            if (in_array($extractedCallText, $matches)) {
+            } else {
+                echo "extractedCall1=".$strpos1." ".$endPos." ".$extractedCallText."<br><br>";
+                $matches[$matchesIDX] = $extractedCallText;
+                $extractedCount++;
+                $matchesIDX++;
             }
             $IDX = $strpos1;
         } else if ($strpos2 > 0) {
@@ -108,10 +118,12 @@ function extractCalls ($dir,$filename) {
             $endPos = strpos($file_contents,'")',$strpos2+$translateStringLength);
             $strpos2 = $strpos2+$translateStringLength+2;
             $extractedCallText = substr($file_contents,$strpos2,$endPos-$strpos2);
-            // echo "extractedCall2=".$strpos2." ".$endPos." ".$extractedCallText."<br><br>";
-            if (!in_array($extractedCallText, $_lang)) {
-                $_lang[$_langIDX] = $extractedCallText;
-                $_langIDX++;
+            if (in_array($extractedCallText, $matches)) {
+            } else {
+                echo "extractedCall2=".$strpos2." ".$endPos." ".$extractedCallText."<br><br>";
+                $matches[$matchesIDX] = $extractedCallText;
+                $extractedCount++;
+                $matchesIDX++;
             }
             $IDX = $strpos2;
         } else {
