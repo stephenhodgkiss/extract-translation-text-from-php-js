@@ -3,8 +3,8 @@
 // ini_set('display_errors', 'On');
 
 $translateString = 'TranslateText';
-$filePath1 = 'lang/en.php';
-$filePath2 = 'lang/en_messages.txt';
+$filePath1 = 'lang/en.inc.php';
+$filePath2 = 'en_messages.txt';
 
 $matches = [];
 $translateStringLength = strlen($translateString);
