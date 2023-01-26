@@ -4,7 +4,7 @@
 
 $translateString = 'TranslateText';
 $filePath1 = 'lang/en.php';
-$filePath2 = 'lang/en_messages.php';
+$filePath2 = 'lang/en_messages.txt';
 
 $matches = [];
 $translateStringLength = strlen($translateString);
