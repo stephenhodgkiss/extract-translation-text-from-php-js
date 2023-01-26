@@ -3,7 +3,7 @@ Extract strings for translations from PHP and JS files
 
 I was recently developing a few sites that needed to be in multiple languages. Searching online I found things such as using PO files, php-gettext PHP library and the https://POedit.net application, however they fell short of extracting the text that I could easily add to a PHP and JS script as an array. This applied to both the original language (English in my case) and any translated files.
 
-The translation part is done manually using google translate or https://www.deepl.com/translator. This could be automated with an API from both those or even the new ChatGPT that's taking the tech world by storm.
+The translation part is done manually using google translate or https://www.deepl.com/translator. This could be automated with an API from both those or even the new ChatGPT that's taking the tech world by storm. Take note of point #3 below.
 
 I have also included an example of the functions I used in both PHP and JS.
 
@@ -68,6 +68,8 @@ You can use the Text only file as the source to use in the manual translations a
 The extraction process caters for you using single or double quotes in the function calls.
 
 If your text contains a single quote, then you need to escape them in both PHP and JS instances, regardless if you wrap the text in single or double quotes.
+
+Make sure you also do this on any translated files.
 
 Examples
 
