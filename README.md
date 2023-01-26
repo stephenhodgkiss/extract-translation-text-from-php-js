@@ -45,7 +45,7 @@ errorMsg = TranslateText('Select ONE item from the list above');
 
 Once you have all your translatable texts wrapped in a function call, the next stage is to run the extract_lang.php.
 
-First, upload and amend the script changing lines 5-8 as necessary for your project. It should be in the root of your public folder, so it can read all files in that directory and all sub-directories.
+First, upload and amend the script changing lines 5-9 as necessary for your project. It should be in the root of your public folder, so it can read all files in that directory and all sub-directories.
 
 After extracting the translations for the first time, the $append value should be changed to 'false' so it loads all current translations first.
 
