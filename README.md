@@ -52,9 +52,9 @@ Done. 59 translations extracted
 
 Translation Function: TranslateText 
 
-PHP array file: lang/en.php 
+PHP array file: lang/en.inc.php 
 
-Text only file: lang/en_messages.txt 
+Text only file: en_messages.txt 
 
 You can use the Text only file as the source to use in the manual translations at google or deepl.
 
