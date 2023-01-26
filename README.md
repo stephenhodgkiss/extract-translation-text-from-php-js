@@ -49,8 +49,11 @@ First, upload and amend the script changing lines 5-7 as necessary for your proj
 Now open the script in your browser, once done it shows a summary of what it has done: -
 
 Done. 59 translations extracted 
+
 Translation Function: TranslateText 
+
 PHP array file: lang/en.php 
+
 Text only file: lang/en_messages.php 
 
 3. Notes regarding single and double quotes
