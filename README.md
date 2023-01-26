@@ -9,7 +9,7 @@ I have also included an example of the functions I used in both PHP and JS.
 
 1. The process
 
-To make the development process easier, whenever a piece of text would need an associated translated version, wrap the text in function call.
+To make the development process easier, whenever a piece of text needs an associated translated version, wrap the text in a function call.
 
 Add both the PHP and JS function calls to your scripts wherever they're needed.
 
