@@ -57,7 +57,7 @@ Text only file: lang/en_messages.php
 
 The extraction process caters for you using single or double quotes in the function calls.
 
-If your text contains single quote, then you need to escape them in both PHP and JS instances, regardless if you wrap the text in single or double quotes.
+If your text contains a single quote, then you need to escape them in both PHP and JS instances, regardless if you wrap the text in single or double quotes.
 
 Examples
 
