@@ -18,6 +18,8 @@ sort($matches);
 $file1 = fopen($filePath1, "w"); // formatted PHP array
 $file2 = fopen($filePath2, "w"); // just the text part
 
+fwrite($file1, '<?php' . PHP_EOL);
+
 for ($IDX = 0; $IDX < count($matches); $IDX++) {
     if ($matches[$IDX] != '' && $matches[$IDX] != '"') {
         $outputLine = "\$_lang['".$matches[$IDX]."'] = '".$matches[$IDX]."';";
@@ -25,6 +27,8 @@ for ($IDX = 0; $IDX < count($matches); $IDX++) {
         fwrite($file2, $matches[$IDX] . PHP_EOL);
     }
 }
+
+fwrite($file1, '?>' . PHP_EOL);
 
 fclose($file1);
 fclose($file2);
@@ -54,7 +58,11 @@ function extractCalls ($dir,$filename) {
     global $matches,$translateString,$translateStringLength;
 
     if (substr($filename,-3) == '.js') {
+        // echo 'filename='.$filename.'<br>';
+        // echo '__FILE__='.dirname(__FILE__).'<br>';
+        // echo '$dir='.$dir.'<br>';
         $scriptDirectory = str_replace(dirname(__FILE__),'',$dir);
+        // echo '$scriptDirectory='.$scriptDirectory.'<br>';
         $realFilename = 'https://'.$_SERVER['SERVER_NAME'].$scriptDirectory.'/'.$filename;
         $file_contents= file_get_contents($realFilename);
     } else {
@@ -65,6 +73,8 @@ function extractCalls ($dir,$filename) {
     $fileLength = strlen($file_contents);
     $matchesIDX = count($matches);
     $IDX = 0;
+
+    // echo 'extractCalls='.$realFilename.' length='.$fileLength.'<br>';
 
     while ($IDX < $fileLength) {
 
@@ -83,6 +93,7 @@ function extractCalls ($dir,$filename) {
             $endPos = strpos($file_contents,"')",$strpos1+$translateStringLength);
             $strpos1 = $strpos1+$translateStringLength+2;
             $extractedCallText = substr($file_contents,$strpos1,$endPos-$strpos1);
+            // echo "extractedCall1=".$strpos1." ".$endPos." ".$extractedCallText."<br><br>";
             if (!in_array($extractedCallText, $matches)) {
                 $matches[$matchesIDX] = $extractedCallText;
                 $matchesIDX++;
@@ -94,6 +105,7 @@ function extractCalls ($dir,$filename) {
             $endPos = strpos($file_contents,'")',$strpos2+$translateStringLength);
             $strpos2 = $strpos2+$translateStringLength+2;
             $extractedCallText = substr($file_contents,$strpos2,$endPos-$strpos2);
+            // echo "extractedCall2=".$strpos2." ".$endPos." ".$extractedCallText."<br><br>";
             if (!in_array($extractedCallText, $matches)) {
                 $matches[$matchesIDX] = $extractedCallText;
                 $matchesIDX++;
