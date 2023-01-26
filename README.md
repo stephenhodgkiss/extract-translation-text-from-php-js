@@ -15,11 +15,19 @@ Add both the PHP and JS function calls to your scripts wherever they're needed.
 
 a. PHP examples
 
-<code><button onclick="SelectPackage('2'); return false;" type="button" class="btn btn-primary" style="width:100%; margin-top:15px; color:#000; font-weight:bold; font-size:1.5rem;"><?=TranslateText('Order Now')?></button></code>
+````
+```
+<button onclick="SelectPackage('2'); return false;" type="button" class="btn btn-primary" style="width:100%; margin-top:15px; color:#000; font-weight:bold; font-size:1.5rem;"><?=TranslateText('Order Now')?></button>
+```
+````
 
 and if you have images with text in different languages, use this simple trick ...
 
+````
+```
 <img src="images/<?=TranslateText('d5i1')?>" class="img img-responsive" style="width:80%;">
+```
+````
 
 In English, the value for 'd5i1' would be something like 'banner_EN.png' and 
 in say Spanish would be something like 'banner_ES.png'
@@ -49,5 +57,9 @@ If your text contains single quote, then you need to escape them in both PHP and
 
 Examples
 
+````
+```
 const msg1 = TranslateText('That\'s a beautiful view');
 const msg2 = TranslateText("Where\'s the appointment book?");
+```
+````
