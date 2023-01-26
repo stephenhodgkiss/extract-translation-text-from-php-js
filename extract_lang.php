@@ -11,7 +11,6 @@ $matches = [];
 $translateStringLength = strlen($translateString);
 
 if ($append) {
-    // TODO read existing file into array here
     include($filePath1);
     $IDX = 0;
     foreach($_lang as $entry) {
