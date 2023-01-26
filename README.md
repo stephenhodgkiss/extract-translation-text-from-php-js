@@ -1,7 +1,7 @@
 # extract-translation-text-from-php-js
 Extract strings for translations from PHP and JS files
 
-I was recently developing a few sites that needed to be in multiple languages. Searching online I found things such as using PO files and the https://POedit.net application, however they fell short of extracting the text that I could easily add to a PHP and JS script as an array. This applied to both the original language (English in my case) and any translated files.
+I was recently developing a few sites that needed to be in multiple languages. Searching online I found things such as using PO files, php-gettext PHP library and the https://POedit.net application, however they fell short of extracting the text that I could easily add to a PHP and JS script as an array. This applied to both the original language (English in my case) and any translated files.
 
 The translation part is done manually using google translate or https://www.deepl.com/translator. This could be automated with an API from both those or even the new ChatGPT that's taking the tech world by storm.
 
