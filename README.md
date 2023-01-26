@@ -46,7 +46,7 @@ Once you have all your translatable texts wrapped in a function call, the next s
 
 First, upload and amend the script changing lines 5-7 as necessary for your project. It should be in the root of your public folder, so it can read all files in that directory and all sub-directories.
 
-Now open the script in your browser, once done it shows a summary of what it has done: -
+Now open the script in your browser, once done it shows a summary of what it has produced: -
 
 Done. 59 translations extracted 
 
