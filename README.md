@@ -86,6 +86,8 @@ const msg2 = TranslateText("Where\'s the appointment book?");
 
 This process reads a translated messages file that you produced at google or deepl.com for example, and creates a new language file.
 
+If you have specific translations for any images, double-check them as sometimes it translates the image names as well.
+
 upload_lang.php can be run with a parameter declaring the language of the input messages file.
 
 E.g. upload_lang.php?lang=es
