@@ -81,3 +81,27 @@ const msg1 = TranslateText('That\'s a beautiful view');
 const msg2 = TranslateText("Where\'s the appointment book?");
 ```
 ````
+
+4. Creating new Message Templates from translated text
+
+This process reads a translated messages file that you produced at google or deepl.com for example, and creates a new language file.
+
+upload_lang.php can be run with a parameter declaring the language of the message file
+
+E.g. upload_lang.php?lang=es
+
+By default with the existing code, it will then read the base language file of 'lang/en.inc.php' and the input messages file 'es_messages.txt'
+
+If both files exist and contain the same number of translation, it continues to create the new language file, outputting a summary when done.
+
+59 base translations pre-loaded
+
+59 message translations pre-loaded
+
+Base language template: lang/en.inc.php
+
+Input Messages File: es_messages.txt
+
+New Messages File: lang/es.inc.php
+
+Done
