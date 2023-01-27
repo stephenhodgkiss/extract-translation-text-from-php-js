@@ -94,7 +94,7 @@ E.g. upload_lang.php?lang=es
 
 By default with the existing code, it will then read the base language file of 'lang/en.inc.php' and the input messages file 'es_messages.txt'
 
-If both files exist and contain the same number of translation, it continues to create the new language file, outputting a summary when done.
+If both files exist and contain the same number of translations, it continues to create the new language file, outputting a summary when done.
 
 59 base translations pre-loaded
 
