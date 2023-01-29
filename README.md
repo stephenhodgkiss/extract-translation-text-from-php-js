@@ -71,8 +71,6 @@ The extraction process caters for you using single or double quotes in the funct
 
 If your text contains a single quote, then you need to escape them in both PHP and JS instances, regardless if you wrap the text in single or double quotes.
 
-Make sure you also do this on any translated files.
-
 Examples
 
 ````
