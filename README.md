@@ -49,7 +49,7 @@ Once you have all your translatable texts wrapped in a function call, the next s
 
 First, upload and amend the script changing lines 5-9 as necessary for your project. It should be in the root of your public folder, so it can read all files in that directory and all sub-directories.
 
-After extracting the translations for the first time, the $append value should be changed to 'false' so it loads all current translations first.
+After extracting the translations for the first time, the $append value should be changed to 'true' so it loads all current translations first.
 
 Now open the script in your browser, once done it shows a summary of what it has produced: -
 
