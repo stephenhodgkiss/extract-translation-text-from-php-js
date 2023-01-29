@@ -15,7 +15,7 @@ To make the development process easier, whenever a piece of text needs an associ
 
 This avoids having to think about translations and translation files until you are done with writing code using the base language first e.g. English
 
-Add both the PHP and JS function calls to your scripts wherever they're needed.
+Add both the PHP and JS function calls to your scripts wherever they're needed (see translatetext.php and translatetext.js).
 
 a. PHP examples
 
