@@ -80,6 +80,13 @@ const msg2 = TranslateText("Where\'s the appointment book?");
 ```
 ````
 
+````
+```
+$button1 = TranslateText('Where\'s your piece of mind');
+$button2 = TranslateText("Where\'s your coat");
+```
+````
+
 4. Creating new Message Templates from translated text
 
 This process reads a translated messages file that you produced at google or deepl.com for example, and creates a new language file.
