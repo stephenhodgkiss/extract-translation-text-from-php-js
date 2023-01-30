@@ -15,7 +15,7 @@ if ($append) {
     include($filePath1);
     $IDX = 0;
     foreach($_lang as $entry) {
-        $matches[$IDX] = $entry;
+        $matches[$IDX] = addslashes($entry);
         $IDX++;
     }
     echo count($matches).' translations pre-loaded'.'<br>';
