@@ -80,7 +80,7 @@ function extractCalls ($dir,$filename) {
         $realFilename = 'https://'.$_SERVER['SERVER_NAME'].$scriptDirectory.'/'.$filename;
         $file_contents= file_get_contents($realFilename);
     } else {
-        $realFilename = $filename;
+        $realFilename = $dir.'/'.$filename;
         $file_contents = file_get_contents($realFilename);
     }
 
