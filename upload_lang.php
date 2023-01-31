@@ -41,6 +41,14 @@ $file2 = fopen($langMessages, "r");
 if ($file2) {
     $file_contents = explode("\n", fread($file2, filesize($langMessages)));
 }
+
+// remove empty lines
+for ($IDX = 0; $IDX < count($file_contents); $IDX++) {
+    if (isset($file_contents[$IDX]) && $file_contents[$IDX] != '' && $file_contents[$IDX] != '"') {
+    } else {
+        unset($file_contents[$IDX]);
+    }
+}
 echo count($file_contents).' message translations pre-loaded'.'<br><br>';
 
 $file3 = fopen($langImages, "r");
@@ -48,14 +56,14 @@ if ($file3) {
     $file_images = explode("\n", fread($file3, filesize($langImages)));
 }
 
-// remove empty image lines
+// remove empty lines
 for ($IDX = 0; $IDX < count($file_images); $IDX++) {
     if (isset($file_images[$IDX]) && $file_images[$IDX] != '' && $file_images[$IDX] != '"') {
     } else {
         unset($file_images[$IDX]);
     }
 }
-echo count($file_images).' message translations pre-loaded'.'<br><br>';
+echo count($file_images).' images pre-loaded'.'<br><br>';
 
 if (count($matches) != count($file_contents)+count($file_images)) {
     die('Error: Count Mismatch');
