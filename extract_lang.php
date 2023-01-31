@@ -4,8 +4,8 @@
 
 $translateString = 'TranslateText';
 $ignorePath1 = dirname(__FILE__).'/lang';
-$filePath1 = 'lang/en.inc.php';
-$filePath2 = 'en_messages.txt';
+$filePath1 = 'lang/en.inc.php'; // PHP language array
+$filePath2 = 'en_messages.txt'; // just the text part
 $append = true;
 
 $matches = [];
@@ -18,17 +18,35 @@ if ($append) {
         $matches[$IDX] = addslashes($entry);
         $IDX++;
     }
-    echo count($matches).' translations pre-loaded'.'<br>';
 }
+
+if ( fopen($filePath1, "w") !== false ) {
+
+    // file opened successfully
+    $file1 = fopen($filePath1, "w");
+
+} else {
+    echo "Failed to open or create a new file at ".$filePath1." - Check permissions and try again.";
+    die();
+}
+
+if ( fopen($filePath2, "w") !== false ) {
+
+    // file opened successfully
+    $file2 = fopen($filePath2, "w");
+
+} else {
+    echo "Failed to open or create a new file at ".$filePath2." - Check permissions and try again.";
+    die();
+}
+
+echo count($matches).' translations pre-loaded'.'<br>';
 
 $matchesIDX = count($matches);
 $extractedCount = 0;
 
 // call function for each file
 processAllFiles(dirname(__FILE__));
-
-$file1 = fopen($filePath1, "w"); // formatted PHP array
-$file2 = fopen($filePath2, "w"); // just the text part
 
 fwrite($file1, '<?php' . PHP_EOL);
 
