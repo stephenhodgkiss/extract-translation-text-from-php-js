@@ -12,11 +12,13 @@ $matches = [];
 $translateStringLength = strlen($translateString);
 
 if ($append) {
-    include($filePath1);
-    $IDX = 0;
-    foreach($_lang as $entry) {
-        $matches[$IDX] = addslashes($entry);
-        $IDX++;
+    if(file_exists($filePath1)) {
+        include($filePath1);
+        $IDX = 0;
+        foreach($_lang as $entry) {
+            $matches[$IDX] = addslashes($entry);
+            $IDX++;
+        }
     }
 }
 
