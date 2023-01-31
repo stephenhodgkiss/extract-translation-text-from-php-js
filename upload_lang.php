@@ -5,6 +5,7 @@
 // IMPORTANT: the order of both files below must be the same
 
 $baseLangTemplate = 'lang/en.inc.php';
+$langImages = 'images_en_messages.txt'; // just images
 $langMessages = '%%LANG%%_messages.txt';
 $translatedLang = 'lang/%%LANG%%.inc.php';
 
@@ -16,8 +17,6 @@ if (isset($_REQUEST['lang'])) {
 // replace %%LANG%% with language parameter if any
 $langMessages = str_replace('%%LANG%%',$lang,$langMessages);
 $translatedLang = str_replace('%%LANG%%',$lang,$translatedLang);
-
-$langImages = 'images_en_messages.txt'; // just images
 
 if (!file_exists(dirname(__FILE__).'/'.$baseLangTemplate)) {
     die('Error: The base template file does not exist '.dirname(__FILE__).'/'.$baseLangTemplate);
