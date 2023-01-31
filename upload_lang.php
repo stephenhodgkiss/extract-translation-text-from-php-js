@@ -1,6 +1,6 @@
 <?php 
-error_reporting(E_ALL);
-ini_set('display_errors', 'On');
+// error_reporting(E_ALL);
+// ini_set('display_errors', 'On');
 
 // IMPORTANT: the order of both files below must be the same
 
@@ -17,6 +17,8 @@ if (isset($_REQUEST['lang'])) {
 $langMessages = str_replace('%%LANG%%',$lang,$langMessages);
 $translatedLang = str_replace('%%LANG%%',$lang,$translatedLang);
 
+$langImages = 'images_en_messages.txt'; // just images
+
 if (!file_exists(dirname(__FILE__).'/'.$baseLangTemplate)) {
     die('Error: The base template file does not exist '.dirname(__FILE__).'/'.$baseLangTemplate);
 }if (!file_exists(dirname(__FILE__).'/'.$langMessages)) {
@@ -24,6 +26,8 @@ if (!file_exists(dirname(__FILE__).'/'.$baseLangTemplate)) {
 }
 
 $matches = [];
+$file_contents = [];
+$file_images = [];
 
 include($baseLangTemplate);
 $IDX = 0;
@@ -39,7 +43,21 @@ if ($file2) {
 }
 echo count($file_contents).' message translations pre-loaded'.'<br><br>';
 
-if (count($matches) != count($file_contents)) {
+$file3 = fopen($langImages, "r");
+if ($file3) {
+    $file_images = explode("\n", fread($file3, filesize($langImages)));
+}
+
+// remove empty image lines
+for ($IDX = 0; $IDX < count($file_images); $IDX++) {
+    if (isset($file_images[$IDX]) && $file_images[$IDX] != '' && $file_images[$IDX] != '"') {
+    } else {
+        unset($file_images[$IDX]);
+    }
+}
+echo count($file_images).' message translations pre-loaded'.'<br><br>';
+
+if (count($matches) != count($file_contents)+count($file_images)) {
     die('Error: Count Mismatch');
 }
 
@@ -50,9 +68,16 @@ $file1 = fopen($translatedLang, "w");
 
 fwrite($file1, '<?php' . PHP_EOL);
 
-for ($IDX = 0; $IDX < count($matches); $IDX++) {
+for ($IDX = 0; $IDX < count($matches)-count($file_images); $IDX++) {
     if (isset($matches[$IDX]) && $matches[$IDX] != '' && $matches[$IDX] != '"') {
         $outputLine = "\$_lang['".addslashes(stripcslashes($matches[$IDX]))."'] = '".addslashes(stripcslashes($file_contents[$IDX]))."';";
+        fwrite($file1, $outputLine . PHP_EOL);
+    }
+}
+
+for ($IDX = count($matches)-count($file_images); $IDX < count($matches); $IDX++) {
+    if (isset($matches[$IDX]) && $matches[$IDX] != '' && $matches[$IDX] != '"') {
+        $outputLine = "\$_lang['".addslashes(stripcslashes($matches[$IDX]))."'] = '".addslashes(stripcslashes($matches[$IDX]))."';";
         fwrite($file1, $outputLine . PHP_EOL);
     }
 }
@@ -61,6 +86,7 @@ fwrite($file1, '?>' . PHP_EOL);
 
 fclose($file1);
 fclose($file2);
+fclose($file3);
 
 echo 'Base language template: '.$baseLangTemplate.'<br>';
 echo 'Input Messages File: '.$langMessages.'<br>';
