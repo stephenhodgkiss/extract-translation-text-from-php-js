@@ -7,7 +7,7 @@ $ignorePath1 = dirname(__FILE__).'/lang';
 $filePath1 = 'lang/en.inc.php'; // PHP language array
 $filePath2 = 'en_messages.txt'; // just the text part
 $filePath3 = 'images_'.$filePath2; // just images
-$append = true;
+$append = false;
 
 $matches = [];
 $translateStringLength = strlen($translateString);
