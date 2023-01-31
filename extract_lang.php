@@ -6,6 +6,7 @@ $translateString = 'TranslateText';
 $ignorePath1 = dirname(__FILE__).'/lang';
 $filePath1 = 'lang/en.inc.php'; // PHP language array
 $filePath2 = 'en_messages.txt'; // just the text part
+$filePath3 = 'images_'.$filePath2; // just images
 $append = true;
 
 $matches = [];
@@ -42,6 +43,16 @@ if ( fopen($filePath2, "w") !== false ) {
     die();
 }
 
+if ( fopen($filePath3, "w") !== false ) {
+
+    // file opened successfully
+    $file3 = fopen($filePath3, "w");
+
+} else {
+    echo "Failed to open or create a new file at ".$filePath3." - Check permissions and try again.";
+    die();
+}
+
 echo count($matches).' translations pre-loaded'.'<br>';
 
 $matchesIDX = count($matches);
@@ -54,9 +65,41 @@ fwrite($file1, '<?php' . PHP_EOL);
 
 for ($IDX = 0; $IDX < count($matches); $IDX++) {
     if (isset($matches[$IDX]) && $matches[$IDX] != '' && $matches[$IDX] != '"') {
+
+        $matchLowercase = strtolower($matches[$IDX]);
         $outputLine = "\$_lang['".$matches[$IDX]."'] = '".$matches[$IDX]."';";
-        fwrite($file1, $outputLine . PHP_EOL);
-        fwrite($file2, stripcslashes($matches[$IDX]) . PHP_EOL);
+
+        // if line ends with .jpg .jpeg .png .webp .gif .pdf then
+        // ignore
+
+        $matchLast4 = substr($matchLowercase,-4);
+        $matchLast5 = substr($matchLowercase,-5);
+
+        if ($matchLast4 == '.jpg' || $matchLast4 == '.png' || $matchLast4 == '.gif' || $matchLast4 == '.pdf' || $matchLast5 == '.jpeg' || $matchLast5 == '.webp') {
+        } else {
+            fwrite($file1, $outputLine . PHP_EOL);
+            fwrite($file2, str_replace('<br>','\n',stripcslashes($matches[$IDX])) . PHP_EOL);
+        }
+    }
+}
+
+// run again just for images to force to the end of the array
+for ($IDX = 0; $IDX < count($matches); $IDX++) {
+    if (isset($matches[$IDX]) && $matches[$IDX] != '' && $matches[$IDX] != '"') {
+
+        $matchLowercase = strtolower($matches[$IDX]);
+        $outputLine = "\$_lang['".$matches[$IDX]."'] = '".$matches[$IDX]."';";
+
+        // if line ends with .jpg .jpeg .png .webp .gif .pdf then
+        // write to separate file
+
+        $matchLast4 = substr($matchLowercase,-4);
+        $matchLast5 = substr($matchLowercase,-5);
+
+        if ($matchLast4 == '.jpg' || $matchLast4 == '.png' || $matchLast4 == '.gif' || $matchLast4 == '.pdf' || $matchLast5 == '.jpeg' || $matchLast5 == '.webp') {
+            fwrite($file1, $outputLine . PHP_EOL);
+            fwrite($file3, stripcslashes($matches[$IDX]) . PHP_EOL);
+        }
     }
 }
 
@@ -64,11 +107,13 @@ fwrite($file1, '?>' . PHP_EOL);
 
 fclose($file1);
 fclose($file2);
+fclose($file3);
 
 echo 'Done. '.$extractedCount.' translations extracted'.'<br>';
 echo 'Translation Function: '.$translateString.'<br>';
 echo 'PHP array file: '.$filePath1.'<br>';
 echo 'Text only file: '.$filePath2.'<br>';
+echo 'Image only file: '.$filePath3.'<br>';
 exit;
 
 function processAllFiles($dir) {
