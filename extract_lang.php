@@ -7,21 +7,9 @@ $ignorePath1 = dirname(__FILE__).'/lang';
 $filePath1 = 'lang/en.inc.php'; // PHP language array
 $filePath2 = 'en_messages.txt'; // just the text part
 $filePath3 = 'images_'.$filePath2; // just images
-$append = false;
 
 $matches = [];
 $translateStringLength = strlen($translateString);
-
-if ($append) {
-    if(file_exists($filePath1)) {
-        include($filePath1);
-        $IDX = 0;
-        foreach($_lang as $entry) {
-            $matches[$IDX] = addslashes($entry);
-            $IDX++;
-        }
-    }
-}
 
 if ( fopen($filePath1, "w") !== false ) {
 
@@ -52,8 +40,6 @@ if ( fopen($filePath3, "w") !== false ) {
     echo "Failed to open or create a new file at ".$filePath3." - Check permissions and try again.";
     die();
 }
-
-echo count($matches).' translations pre-loaded'.'<br>';
 
 $matchesIDX = count($matches);
 $extractedCount = 0;
