@@ -63,8 +63,6 @@ Text only file: en_messages.txt
 
 You can use the Text only file as the source to use in the manual translations at google or deepl.
 
-After extracting the translations for the first time, the $append value should be changed to 'true' if you want to pre-load all current translations first.
-
 3. Notes regarding single and double quotes
 
 The extraction process caters for you using single or double quotes in the function calls.
