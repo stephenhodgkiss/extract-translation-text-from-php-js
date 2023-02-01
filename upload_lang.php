@@ -51,7 +51,7 @@ for ($IDX = 0; $IDX < count($file_contents); $IDX++) {
 echo count($file_contents).' message translations pre-loaded'.'<br><br>';
 
 $file3 = fopen($langImages, "r");
-if ($file3) {
+if ($file3 && filesize($langImages) > 0) {
     $file_images = explode("\n", fread($file3, filesize($langImages)));
 }
 
