@@ -1,7 +1,14 @@
-const langArray = JSON.parse('<?=str_replace("'","\'",$jsonLang)?>');
+const jsonLang = "<?=str_replace("'","\'",$jsonLang)?>";
+
+var langArray = [];
+
+if (jsonLang == null) {
+} else {
+    langArray = JSON.parse(jsonLang);
+}
 
 function TranslateText(textToTranslate) {
-    if(langArray[textToTranslate] === undefined || langArray[textToTranslate] == '') {
+    if(langArray === null || langArray[textToTranslate] === null || langArray[textToTranslate] === undefined || langArray[textToTranslate] == '') {
         translatedText = textToTranslate;
     } else {
         translatedText = langArray[textToTranslate];
