@@ -2,6 +2,9 @@
 // error_reporting(E_ALL);
 // ini_set('display_errors', 'On');
 
+// Reads a whole TXT document and wraps each line with the function call 
+// outputting the results in a new file
+
 $translateString = 'TranslateText';
 $filePath1 = 'input_document.txt'; // input file
 $filePath2 = 'out_'.$filePath1; // output file
