@@ -110,3 +110,7 @@ Input Messages File: es_messages.txt
 New Messages File: lang/es.inc.php
 
 Done
+
+5. Convert Document
+
+convert_document.php reads a whole TXT file, wraps each line in a function call and creates a new file as the output.
