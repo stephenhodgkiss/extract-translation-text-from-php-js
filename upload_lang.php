@@ -77,7 +77,8 @@ fwrite($file1, '<?php' . PHP_EOL);
 
 for ($IDX = 0; $IDX < count($matches)-count($file_images); $IDX++) {
     if (isset($matches[$IDX]) && $matches[$IDX] != '' && $matches[$IDX] != '"') {
-        $outputLine = "\$_lang['".addslashes(stripcslashes($matches[$IDX]))."'] = '".addslashes(stripcslashes($file_contents[$IDX]))."';";
+        $line = preg_replace('/[\x0d]/', '', $file_contents[$IDX]);
+        $outputLine = "\$_lang['".addslashes(stripcslashes($matches[$IDX]))."'] = '".addslashes(stripcslashes($line))."';";
         fwrite($file1, $outputLine . PHP_EOL);
     }
 }
