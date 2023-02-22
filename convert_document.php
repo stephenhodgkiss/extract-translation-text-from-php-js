@@ -44,7 +44,10 @@ for ($IDX = 0; $IDX < count($file_contents); $IDX++) {
 echo count($file_contents).' Document Lines Read'.'<br><br>';
 
 for ($IDX = 0; $IDX < count($file_contents); $IDX++) {
-    fwrite($file2, $file_contents[$IDX] . PHP_EOL);
+    if (isset($file_contents[$IDX]) && $file_contents[$IDX] == '') {
+    } else {
+        fwrite($file2, $file_contents[$IDX] . PHP_EOL);
+    }
 }
 
 fclose($file1);
