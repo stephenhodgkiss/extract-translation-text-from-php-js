@@ -6,6 +6,8 @@
 // outputting the results in a new file
 
 $translateString = 'TranslateText';
+$beforeText = "('";
+$afterText = "')";
 $filePath1 = 'input_document.txt'; // input file
 $filePath2 = 'out_'.$filePath1; // output file
 
@@ -38,7 +40,7 @@ for ($IDX = 0; $IDX < count($file_contents); $IDX++) {
     if (isset($file_contents[$IDX]) && $file_contents[$IDX] == '') {
     } else {
         $line = $file_contents[$IDX];
-        $file_contents[$IDX] = $translateString."('".addslashes(stripcslashes($line))."')";
+        $file_contents[$IDX] = $translateString.$beforeText.addslashes(stripcslashes($line)).$afterText;
     }
 }
 echo count($file_contents).' Document Lines Read'.'<br><br>';
