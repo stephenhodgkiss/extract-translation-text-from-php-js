@@ -1,4 +1,4 @@
-const jsonLang = '<?=str_replace("'","\'",$jsonLang)?>';
+const jsonLang = `<?php echo str_replace("'","\'",$jsonLang); ?>`
 
 var langArray = [];
 
