@@ -1,5 +1,7 @@
 <?php
 
+$_lang = [];
+
 $langfile = 'lang/en.inc.php'; // you can start with an empty file until you have ran the extract script
 include($langfile);
 
