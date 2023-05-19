@@ -8,6 +8,7 @@ if (jsonLang == null) {
 }
 
 function TranslateText(textToTranslate) {
+    let translatedText = ''
     if(langArray === null || langArray[textToTranslate] === null || langArray[textToTranslate] === undefined || langArray[textToTranslate] == '') {
         translatedText = textToTranslate;
     } else {
