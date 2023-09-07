@@ -7,6 +7,12 @@ include($langfile);
 
 $jsonLang = json_encode($_lang);
 
+// loop around the $lanffile and replace *## with <strong> and ##* with </strong>
+foreach ($_lang as $key => $value) {
+    $_lang[$key] = str_replace("*## ", "<strong>",  $value);
+    $_lang[$key] = str_replace(" ##*", "</strong>", $_lang[$key]);
+}
+
 function TranslateText($text) {
     global $_lang;
     if (isset($_lang[$text])) {
