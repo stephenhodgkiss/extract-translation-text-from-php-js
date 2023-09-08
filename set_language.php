@@ -39,3 +39,16 @@ foreach ($_lang as $key => $value) {
     $_lang[$key] = str_replace("*## ", "<strong>",  $value);
     $_lang[$key] = str_replace(" ##*", "</strong>", $_lang[$key]);
 }
+
+$jsonLang = json_encode($_lang);
+
+function TranslateText($text)
+{
+    global $_lang;
+    if (isset($_lang[$text])) {
+        $translatedText = $_lang[$text];
+    } else {
+        $translatedText = $text;
+    }
+    return $translatedText;
+}
