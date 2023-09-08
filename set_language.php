@@ -10,15 +10,13 @@ if (isset($_GET['lang']) && $_GET['lang'] != '') {
     $time = time() + 3600 * 24 * 365 * 10;
     setcookie("lang", $_GET['lang'], ['path' => '/', 'samesite' => 'Lax', 'secure' => true]);
 
-
     $lang = $_GET['lang'];
 } elseif ($_COOKIE['lang'] != '') {
     $lang = $_COOKIE['lang'];
 } else {
-    $time = time() + 3600 * 24 * 365 * 10;
-    setcookie("lang", 'EN', ['path' => '/', 'samesite' => 'Lax', 'secure' => true]);
-
     $lang = 'EN';
+    $time = time() + 3600 * 24 * 365 * 10;
+    setcookie("lang", $lang, ['path' => '/', 'samesite' => 'Lax', 'secure' => true]);
 }
 
 $ogLocale = "en_US";
