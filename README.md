@@ -9,13 +9,11 @@ I have also included an example of the functions I used in both PHP and JS.
 
 1. The process
 
-Start with an empty translation file called for example 'local/en.inc.php'
-
 To make the development process easier, whenever a piece of text needs an associated translated version, wrap the text in a function call.
 
 This avoids having to think about translations and translation files until you are done with writing code using the base language first e.g. English
 
-Add both the PHP and JS function calls (called translatetext.php and translatetext.js) to your scripts wherever they're needed (see translatetext.php and translatetext.js). This should be say in your PHP header script, maybe just after you have decided which language to show for the user. Add the PHP script first followed by the JS script.
+Add both the JS function call (called translatetext.js) plus INCLUDE set_language.php to your scripts before any calls to TranslateText. This should be say in your PHP header script, maybe just after you have decided which language to show for the user. Add the PHP script first followed by the JS script.
 
 a. PHP examples
 
