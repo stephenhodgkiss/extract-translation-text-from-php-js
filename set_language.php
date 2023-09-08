@@ -19,7 +19,7 @@ if (isset($_GET['lang']) && $_GET['lang'] != '') {
     $lang = $_COOKIE['lang'];
 } else {
     if (isset($country_code) && $country_code != '') {
-        $lang = $country_code;
+        $lang = $languageCode;
     }
 }
 
