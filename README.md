@@ -13,7 +13,7 @@ To make the development process easier, whenever a piece of text needs an associ
 
 This avoids having to think about translations and translation files until you are done with writing code using the base language first e.g. English
 
-Add both the JS function call (called translatetext.js) plus INCLUDE set_language.php to your scripts before any calls to TranslateText. This should be say in your PHP header script, maybe just after you have decided which language to show for the user. Add the PHP script first followed by the JS script.
+Add both the JS function call (called translatetext.js) plus INCLUDE location.php, get_language.php and set_language.php to your scripts before any calls to TranslateText. This should be say in your PHP header script, maybe just after you have decided which language to show for the user. Add the PHP script first followed by the JS script.
 
 a. PHP examples
 
