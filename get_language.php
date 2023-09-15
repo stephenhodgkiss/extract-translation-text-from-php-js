@@ -1,9 +1,8 @@
 <?php
 
-function getLanguage($code) {
+function getLanguage($code)
+{
   switch ($code) {
-    case 'MS':
-      return 'العربية الفصحى';
     case 'AL':
       return 'Shqip';
     case 'AD':
@@ -98,11 +97,9 @@ function getLanguage($code) {
       return 'Italiano';
     case 'XK':
       return 'Shqip/Srpski';
-    case 'TR':
-      return 'Türkçe';
+    case 'CN':
+      return '中文';
     default:
       return $code;
   }
 }
-
-?>
