@@ -14,7 +14,7 @@ if (isset($_GET['lang']) && $_GET['lang'] != '') {
     $langCookieSet = true;
 
     $lang = $_GET['lang'];
-} elseif ($_COOKIE['lang'] != '') {
+} elseif (isset($_COOKIE['lang']) && $_COOKIE['lang'] != '') {
     $langCookieSet = true;
     $lang = $_COOKIE['lang'];
 } else {
@@ -31,7 +31,9 @@ if (!file_exists($langfile)) {
 }
 
 $ogLocale = 'en_US';
-if ($lang != 'EN') {
+if ($lang == 'CN') {
+    $ogLocale = 'zh_CN';
+} elseif ($lang != 'EN') {
     $ogLocale = strtolower($lang) . '_' . strtoupper($lang);
 }
 
