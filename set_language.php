@@ -44,7 +44,7 @@ if (!$langCookieSet) {
 
 include($langfile);
 
-// loop around the $lanffile and replace *## with <strong> and ##* with </strong>
+// loop around the $langfile and replace *## with <strong> and ##* with </strong>
 foreach ($_lang as $key => $value) {
     $_lang[$key] = str_replace("*## ", "<strong>",  $value);
     $_lang[$key] = str_replace(" ##*", "</strong>", $_lang[$key]);
