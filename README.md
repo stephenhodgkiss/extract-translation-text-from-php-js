@@ -85,7 +85,7 @@ $button2 = TranslateText("Where\'s your coat");
 
 ## 4. Making text BOLD
 
-To have words displayed in BOLD, you can wrap the text with '\*## ' and '##\* ' respectively. Note the space character that is needed in bot.
+To have words displayed in BOLD, you can wrap the text with '\*## ' and '##\* ' respectively. Note the space character that is needed in both.
 
 Example: Here is an example of some bold text inside a translation, which will show 'beautiful' in bold:
 
