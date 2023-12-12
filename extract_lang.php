@@ -50,7 +50,7 @@ for ($IDX = 0; $IDX < count($matches); $IDX++) {
     if (isset($matches[$IDX]) && $matches[$IDX] != '' && $matches[$IDX] != '"') {
 
         $matchLowercase = strtolower($matches[$IDX]);
-        $outputLine = "\$_lang['" . $matches[$IDX] . "'] = '" . $matches[$IDX] . "';";
+        $outputLine = '$_lang["' . $matches[$IDX] . '"] = "' . $matches[$IDX] . '";';
 
         // if line ends with .jpg .jpeg .png .webp .gif .pdf then
         // ignore
@@ -71,7 +71,7 @@ for ($IDX = 0; $IDX < count($matches); $IDX++) {
     if (isset($matches[$IDX]) && $matches[$IDX] != '' && $matches[$IDX] != '"') {
 
         $matchLowercase = strtolower($matches[$IDX]);
-        $outputLine = "\$_lang['" . $matches[$IDX] . "'] = '" . $matches[$IDX] . "';";
+        $outputLine = '$_lang["' . $matches[$IDX] . '"] = "' . $matches[$IDX] . '";';
 
         // if line ends with .jpg .jpeg .png .webp .gif .pdf then
         // write to separate file
@@ -157,7 +157,7 @@ function extractCalls($dir, $filename)
             } else {
                 // echo "extractedCall1=".$strpos1." ".$endPos." ".$extractedCallText."<br><br>";
 
-                $extractedCallText = str_replace("'", "\\'", $extractedCallText);
+                // $extractedCallText = str_replace("'", "\\'", $extractedCallText);
 
                 $matches[$matchesIDX] = $extractedCallText;
                 $extractedCount++;
@@ -174,7 +174,7 @@ function extractCalls($dir, $filename)
             } else {
                 // echo "extractedCall2=".$strpos2." ".$endPos." ".$extractedCallText."<br><br>";
 
-                $extractedCallText = str_replace("'", "\\'", $extractedCallText);
+                // $extractedCallText = str_replace("'", "\\'", $extractedCallText);
 
                 $matches[$matchesIDX] = $extractedCallText;
                 $extractedCount++;
