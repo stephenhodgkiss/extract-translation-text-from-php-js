@@ -83,7 +83,15 @@ $button2 = TranslateText("Where\'s your coat");
 ```
 ````
 
-4. Creating new Message Templates from translated text
+4. Making text BOLD
+
+To have words displayed in BOLD, you can wrap the text with '*## ' and '##* ' respectively. Note the space character that is needed in bot.
+
+Example: Here is an example of some bold text inside a translation, which will show 'beautiful' in bold:
+
+const msg1 = TranslateText('That\'s a *## beautiful ##* view');
+
+5. Creating new Message Templates from translated text
 
 This process reads a translated messages file that you produced at google or deepl.com for example, and creates a new language file.
 
@@ -109,6 +117,6 @@ New Messages File: lang/es.inc.php
 
 Done
 
-5. Convert Document
+6. Convert Document
 
 convert_document.php reads a whole TXT file, wraps each line in a function call and creates a new file as the output.
