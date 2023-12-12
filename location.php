@@ -33,7 +33,7 @@ if ($country_code == "NL") {
     $languageCode = "nl";
 }
 // using the country code, set the variable $languageCode for all russian speaking countries
-if ($country_code == "RU") {
+if ($country_code == "RU" || $country_code == "BY" || $country_code == "KZ" || $country_code == "KG" || $country_code == "TJ" || $country_code == "UA" || $country_code == "UZ") {
     $languageCode = "ru";
 }
 // using the country code, set the variable $languageCode for all polish speaking countries
