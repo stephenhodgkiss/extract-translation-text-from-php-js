@@ -1,5 +1,5 @@
 # extract-translation-text-from-php-js
-Extract strings for translations from PHP and JS files
+## Extract strings for translations from PHP and JS files
 
 I was recently developing a few sites that needed to be in multiple languages. Searching online I found things such as using PO files, php-gettext PHP library and the https://POedit.net application, however they fell short of extracting the text that I could easily add to a PHP and JS script as an array. This applied to both the original language (English in my case) and any translated files.
 
@@ -7,7 +7,7 @@ The translation part is done manually using google translate or https://www.deep
 
 I have also included an example of the functions I used in both PHP and JS.
 
-1. The process
+## 1. The process
 
 To make the development process easier, whenever a piece of text needs an associated translated version, wrap the text in a function call.
 
@@ -41,7 +41,7 @@ errorMsg = TranslateText('Select ONE item from the list above');
 ```
 ````
 
-2. Extracting
+## 2. Extracting
 
 Once you have all your translatable texts wrapped in a function call, the next stage is to run the extract_lang.php.
 
@@ -61,7 +61,7 @@ Text only file: en_messages.txt
 
 You can use the Text only file as the source to use in the manual translations at google or deepl.
 
-3. Notes regarding single and double quotes
+## 3. Notes regarding single and double quotes
 
 The extraction process caters for you using single or double quotes in the function calls.
 
@@ -83,15 +83,15 @@ $button2 = TranslateText("Where\'s your coat");
 ```
 ````
 
-4. Making text BOLD
+## 4. Making text BOLD
 
-To have words displayed in BOLD, you can wrap the text with '**## ' and '##** ' respectively. Note the space character that is needed in bot.
+To have words displayed in BOLD, you can wrap the text with '\*## ' and '##\* ' respectively. Note the space character that is needed in bot.
 
 Example: Here is an example of some bold text inside a translation, which will show 'beautiful' in bold:
 
-const msg1 = TranslateText('That\'s a **## beautiful ##** view');
+const msg1 = TranslateText('That\'s a \*## beautiful ##\* view');
 
-5. Creating new Message Templates from translated text
+## 5. Creating new Message Templates from translated text
 
 This process reads a translated messages file that you produced at google or deepl.com for example, and creates a new language file.
 
@@ -117,6 +117,6 @@ New Messages File: lang/es.inc.php
 
 Done
 
-6. Convert Document
+## 6. Convert Document
 
 convert_document.php reads a whole TXT file, wraps each line in a function call and creates a new file as the output.
