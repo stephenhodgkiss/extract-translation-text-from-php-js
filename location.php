@@ -42,7 +42,7 @@ if ($country_code == "PL") {
 }
 // using the country code, set the variable $languageCode for all chinese speaking countries
 if ($country_code == "CN") {
-    $languageCode = "zh";
+    $languageCode = "cn";
 }
 // if the country code is not in the list above, set the variable $languageCode to the lowercase version of the country code
 if ($languageCode == "") {
