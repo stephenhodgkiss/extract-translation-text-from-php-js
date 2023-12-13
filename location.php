@@ -44,11 +44,31 @@ if ($country_code == "PL") {
 if ($country_code == "CN") {
     $languageCode = "cn";
 }
+// using the country code, set the variable $languageCode for all indonesian speaking countries
+if ($country_code == "ID") {
+    $languageCode = "id";
+}
+// using the country code, set the variable $languageCode for all arabic speaking countries
+if ($country_code == "SA" || $country_code == "AE" || $country_code == "BH" || $country_code == "DZ" || $country_code == "EG" || $country_code == "IQ" || $country_code == "JO" || $country_code == "KW" || $country_code == "LB" || $country_code == "LY" || $country_code == "MA" || $country_code == "OM" || $country_code == "PS" || $country_code == "QA" || $country_code == "SD" || $country_code == "SY" || $country_code == "TN" || $country_code == "YE") {
+    $languageCode = "ar";
+}
+// using the country code, set the variable $languageCode for all hindi speaking countries
+if ($country_code == "IN") {
+    $languageCode = "hi";
+}
+// using the country code, set the variable $languageCode for all bengali speaking countries
+if ($country_code == "BD") {
+    $languageCode = "bn";
+}
+// using the country code, set the variable $languageCode for all urdu speaking countries
+if ($country_code == "PK") {
+    $languageCode = "ur";
+}
+
+
 // if the country code is not in the list above, set the variable $languageCode to the lowercase version of the country code
 if ($languageCode == "") {
     $languageCode = strtolower($country_code);
 }
 
 $languageCode = strtoupper($languageCode);
-
-?>
