@@ -99,6 +99,18 @@ function getLanguage($code)
       return 'Shqip/Srpski';
     case 'CN':
       return '中文';
+    case 'JA':
+      return '日本語';
+    case 'UR':
+      return 'اردو';
+    case 'BN':
+      return 'বাংলা';
+    case 'HI':
+      return 'हिन्दी';
+    case 'ID':
+      return 'Bahasa Indo';
+    case 'AR':
+      return 'العربية';
     default:
       return $code;
   }
