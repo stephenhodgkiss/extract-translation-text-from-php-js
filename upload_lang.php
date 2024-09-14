@@ -1,6 +1,6 @@
 <?php
-// error_reporting(E_ALL);
-// ini_set('display_errors', 'On');
+error_reporting(E_ALL);
+ini_set('display_errors', 'On');
 
 // IMPORTANT: the order of both files below must be the same
 
@@ -71,6 +71,11 @@ if (count($matches) != count($file_contents) + count($file_images)) {
 
 $matchesIDX = count($matches);
 $extractedCount = 0;
+
+// delete the old file if it exists for $translatedLang
+if (file_exists(dirname(__FILE__) . '/' . $translatedLang)) {
+    unlink(dirname(__FILE__) . '/' . $translatedLang);
+}
 
 $file1 = fopen($translatedLang, "w");
 
