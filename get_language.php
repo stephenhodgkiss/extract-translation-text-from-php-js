@@ -111,6 +111,8 @@ function getLanguage($code)
       return 'Bahasa Indo';
     case 'AR':
       return 'العربية';
+    case 'SW':
+      return 'Kiswahili';
     default:
       return $code;
   }
