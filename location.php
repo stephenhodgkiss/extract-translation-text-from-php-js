@@ -2,7 +2,7 @@
 
 // Based on the IP address, this simple piece of text gets the 2 digit country code
 
-$ip_address = $_SERVER['HTTP_X_REAL_IP'];
+$ip_address = $_SERVER['REMOTE_ADDR'];
 $geo_data = json_decode(file_get_contents("http://ip-api.com/json/{$ip_address}"));
 // if call to ip-api.com fails, use "US" as default country code
 if (!isset($geo_data) || $geo_data == "" || $geo_data == null || $geo_data == "undefined") {
