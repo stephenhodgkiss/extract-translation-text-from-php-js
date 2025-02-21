@@ -2,6 +2,7 @@
 
 $_lang = [];
 $lang = '';
+$html_lang = 'en_US';
 $langCookieSet = false;
 
 if (isset($_GET['lang']) && $_GET['lang'] != '') {
@@ -36,6 +37,8 @@ if ($lang == 'CN') {
 } elseif ($lang != 'EN') {
     $ogLocale = strtolower($lang) . '_' . strtoupper($lang);
 }
+
+$html_lang = str_replace('_', '-', $ogLocale);
 
 if (!$langCookieSet) {
     $time = time() + 3600 * 24 * 365 * 10;
