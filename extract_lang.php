@@ -108,7 +108,7 @@ function processAllFiles($dir)
     global $ignorePath2;
     global $ignorePath3;
 
-    if ($dir == $ignorePath1 or $dir == $ignorePath2 or $dir == $ignorePath3) {
+    if ($dir == $ignorePath1 || $dir == $ignorePath2 || $dir == $ignorePath3) {
         return;
     }
 
