@@ -4,13 +4,11 @@
 
 $translateString = 'TranslateText';
 $ignorePath1 = dirname(__FILE__) . '/lang';
-$ignoreSubfolder1 = '/change-as-needed/';
+$ignorePath2 = dirname(__FILE__) . '/node_modules';
+$ignorePath3 = dirname(__FILE__) . '/leader-line-master';
 $filePath1 = 'lang/en.inc.php'; // PHP language array
 $filePath2 = 'en_messages.txt'; // just the text part
 $filePath3 = 'images_' . $filePath2; // just images
-
-echo 'ignorePath1: ' . $ignorePath1 . '<br>';
-echo 'ignoreSubfolder1: ' . $ignoreSubfolder1 . '<br>';
 
 $matches = [];
 $translateStringLength = strlen($translateString);
@@ -54,7 +52,7 @@ for ($IDX = 0; $IDX < count($matches); $IDX++) {
     if (isset($matches[$IDX]) && $matches[$IDX] != '' && $matches[$IDX] != '"') {
 
         $matchLowercase = strtolower($matches[$IDX]);
-        $outputLine = '$_lang["' . $matches[$IDX] . '"] = "' . $matches[$IDX] . '";';
+        $outputLine = "\$_lang['" . $matches[$IDX] . "'] = '" . $matches[$IDX] . "';";
 
         // if line ends with .jpg .jpeg .png .webp .gif .pdf then
         // ignore
@@ -75,7 +73,7 @@ for ($IDX = 0; $IDX < count($matches); $IDX++) {
     if (isset($matches[$IDX]) && $matches[$IDX] != '' && $matches[$IDX] != '"') {
 
         $matchLowercase = strtolower($matches[$IDX]);
-        $outputLine = '$_lang["' . $matches[$IDX] . '"] = "' . $matches[$IDX] . '";';
+        $outputLine = "\$_lang['" . $matches[$IDX] . "'] = '" . $matches[$IDX] . "';";
 
         // if line ends with .jpg .jpeg .png .webp .gif .pdf then
         // write to separate file
@@ -96,40 +94,6 @@ fclose($file1);
 fclose($file2);
 fclose($file3);
 
-// compare the contents of $filePath1 and $filePath2
-// for each line in $filePath2 there should be a corresponding line in $filePath1
-// if not then echo the line from $filePath2
-// if there is a line in $filePath1 that is not in $filePath2 then echo the line from $filePath1
-
-/* $file1 = file($filePath1);
-$file2 = file($filePath2);
-
-$file1Array = [];
-$IDX = 0;
-foreach ($file1 as $line_num => $line) {
-    $line = trim($line);
-    if ($line != '') {
-        $line = str_replace('$_lang["', '', $line);
-        $strpos = strpos($line, '"');
-        if ($strpos > 0) {
-            $line = substr($line, 0, $strpos);
-            $file1Array[$IDX] = $line;
-            $IDX++;
-        }
-    }
-}
-
-$IDX = 0;
-foreach ($file2 as $line_num => $line) {
-    $line = trim($line);
-    if ($line != '') {
-        if (!in_array($line, $file1Array)) {
-            echo 'Line ' . $IDX . ' in ' . $filePath2 . ' is not in ' . $filePath1 . ' - #' . $line . '#<br>';
-        }
-        $IDX++;
-    }
-} */
-
 echo 'Done. ' . $extractedCount . ' translations extracted' . '<br>';
 echo 'Translation Function: ' . $translateString . '<br>';
 echo 'PHP array file: ' . $filePath1 . '<br>';
@@ -141,6 +105,12 @@ function processAllFiles($dir)
 {
 
     global $ignorePath1;
+    global $ignorePath2;
+    global $ignorePath3;
+
+    if ($dir == $ignorePath1 or $dir == $ignorePath2 or $dir == $ignorePath3) {
+        return;
+    }
 
     $files = scandir($dir);
     foreach ($files as $file) {
@@ -148,10 +118,8 @@ function processAllFiles($dir)
             processAllFiles($dir . '/' . $file);
         } else {
             if (pathinfo($file, PATHINFO_EXTENSION) == 'js' || pathinfo($file, PATHINFO_EXTENSION) == 'php') {
-                if ($dir != $ignorePath1) {
-                    // echo $dir.'/'.$file . "<br>";
-                    extractCalls($dir, $file);
-                }
+                // echo $dir.'/'.$file . "<br>";
+                extractCalls($dir, $file);
             }
         }
     }
@@ -160,12 +128,7 @@ function processAllFiles($dir)
 function extractCalls($dir, $filename)
 {
 
-    global $matches, $translateString, $translateStringLength, $matchesIDX, $extractedCount, $ignoreSubfolder1;
-
-    // if $dir contains ignoreSubfolder1 then exit
-    if (strpos($dir, $ignoreSubfolder1) !== false) {
-        return;
-    }
+    global $matches, $translateString, $translateStringLength, $matchesIDX, $extractedCount;
 
     if (substr($filename, -3) == '.js') {
         $scriptDirectory = str_replace(dirname(__FILE__), '', $dir);
@@ -199,9 +162,6 @@ function extractCalls($dir, $filename)
             if (in_array($extractedCallText, $matches)) {
             } else {
                 // echo "extractedCall1=".$strpos1." ".$endPos." ".$extractedCallText."<br><br>";
-
-                // $extractedCallText = str_replace("'", "\\'", $extractedCallText);
-
                 $matches[$matchesIDX] = $extractedCallText;
                 $extractedCount++;
                 $matchesIDX++;
@@ -216,9 +176,6 @@ function extractCalls($dir, $filename)
             if (in_array($extractedCallText, $matches)) {
             } else {
                 // echo "extractedCall2=".$strpos2." ".$endPos." ".$extractedCallText."<br><br>";
-
-                // $extractedCallText = str_replace("'", "\\'", $extractedCallText);
-
                 $matches[$matchesIDX] = $extractedCallText;
                 $extractedCount++;
                 $matchesIDX++;
