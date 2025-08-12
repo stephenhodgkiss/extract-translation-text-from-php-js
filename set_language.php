@@ -6,18 +6,16 @@ $html_lang = 'en_US';
 $langCookieSet = false;
 
 if (isset($_GET['lang']) && $_GET['lang'] != '') {
-    $time = time() - 3600 * 24 * 365 * 10;
-    setcookie("lang", $_GET['lang'], ['path' => '/', 'samesite' => 'Lax', 'secure' => true]);
-
-    $time = time() + 3600 * 24 * 365 * 10;
-    setcookie("lang", $_GET['lang'], ['path' => '/', 'samesite' => 'Lax', 'secure' => true]);
+    // $time = time() + 3600 * 24 * 365 * 10;
+    // setcookie("lang", $_GET['lang'], ['path' => '/', 'samesite' => 'Lax', 'secure' => true]);
+    $_SESSION['lang'] = $_GET['lang'];
 
     $langCookieSet = true;
 
     $lang = $_GET['lang'];
-} elseif (isset($_COOKIE['lang']) && $_COOKIE['lang'] != '') {
+} elseif (isset($_SESSION['lang']) && $_SESSION['lang'] != '') {
     $langCookieSet = true;
-    $lang = $_COOKIE['lang'];
+    $lang = $_SESSION['lang'];
 } else {
     if (isset($country_code) && $country_code != '') {
         $lang = $languageCode;
@@ -41,8 +39,9 @@ if ($lang == 'CN') {
 $html_lang = str_replace('_', '-', $ogLocale);
 
 if (!$langCookieSet) {
-    $time = time() + 3600 * 24 * 365 * 10;
-    setcookie('lang', $lang, ['path' => '/', 'samesite' => 'Lax', 'secure' => true]);
+    // $time = time() + 3600 * 24 * 365 * 10;
+    // setcookie('lang', $lang, ['path' => '/', 'samesite' => 'Lax', 'secure' => true]);
+    $_SESSION['lang'] = $lang;
 }
 
 include($langfile);
@@ -60,6 +59,10 @@ function TranslateText($text)
     global $_lang;
     if (isset($_lang[$text])) {
         $translatedText = $_lang[$text];
+        // ensure that any \" characters are replaced with &quot;
+        $translatedText = str_replace('\"', '&quot;', $translatedText);
+        $translatedText = str_replace("*##", "<strong>", $translatedText);
+        $translatedText = str_replace("##*", "</strong>", $translatedText);
     } else {
         $translatedText = $text;
     }
