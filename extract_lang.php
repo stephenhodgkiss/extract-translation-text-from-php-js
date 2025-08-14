@@ -52,7 +52,7 @@ for ($IDX = 0; $IDX < count($matches); $IDX++) {
     if (isset($matches[$IDX]) && $matches[$IDX] != '' && $matches[$IDX] != '"') {
 
         $matchLowercase = strtolower($matches[$IDX]);
-        $outputLine = "\$_lang['" . $matches[$IDX] . "'] = '" . $matches[$IDX] . "';";
+        $outputLine = "\$_lang[`" . $matches[$IDX] . "`] = `" . $matches[$IDX] . "`;";
 
         // if line ends with .jpg .jpeg .png .webp .gif .pdf then
         // ignore
@@ -73,7 +73,7 @@ for ($IDX = 0; $IDX < count($matches); $IDX++) {
     if (isset($matches[$IDX]) && $matches[$IDX] != '' && $matches[$IDX] != '"') {
 
         $matchLowercase = strtolower($matches[$IDX]);
-        $outputLine = "\$_lang['" . $matches[$IDX] . "'] = '" . $matches[$IDX] . "';";
+        $outputLine = "\$_lang[`" . $matches[$IDX] . "`] = `" . $matches[$IDX] . "`;";
 
         // if line ends with .jpg .jpeg .png .webp .gif .pdf then
         // write to separate file
